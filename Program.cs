@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SciPlay_CodeChallenge {
     /// <summary>
+    /// Joel Lee
+    /// 5/16/2019
+    /// 
     /// Program to consolidate all living people per year given a START and END year range and a list of people and their BIRTH and DEATH years.
     /// * A Person is included into a yearly count if they have been born or died on that year. (A person who is born/dies in a given year has lived during atleast a part of that year.)
     /// * This is only accepting inputs between the accepted date range.
@@ -63,13 +66,14 @@ namespace SciPlay_CodeChallenge {
                     _yearCensus[person.birthYear - START_YEAR]++;
                     continue;
                 }
-                //increment the years they were alive
+                //increment the years they were alive by going up from birth year until their death adding one to the census
                 for (int i = 0; i <= liveRange; i++) {
                     _yearCensus[(person.birthYear - START_YEAR) + i]++;
                 }
             }
 
-            //Console.WriteLine("Birth: " + _people[0].birthYear + " Death: " + _people[0].deathYear);
+            //print out results in rows of 10
+            //since the dates were stored in a zero indexed range, we have to convert it back to the proper year range for display
             for(int yearOffset = 0; yearOffset <= END_YEAR - START_YEAR; yearOffset++) {
                 Console.Write(START_YEAR + yearOffset + ": " + _yearCensus[yearOffset] + " ");
                 if(yearOffset % 10 == 0) {
