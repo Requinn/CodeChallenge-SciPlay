@@ -72,14 +72,23 @@ namespace SciPlay_CodeChallenge {
                 }
             }
 
-            //print out results in rows of 10
-            //since the dates were stored in a zero indexed range, we have to convert it back to the proper year range for display
+            int maxIndex = 0;
+            int maxValue = 0;
             for(int yearOffset = 0; yearOffset <= END_YEAR - START_YEAR; yearOffset++) {
+                //find the year with most people alive
+                if (_yearCensus[yearOffset] > maxValue) {
+                    maxValue = _yearCensus[yearOffset];
+                    maxIndex = yearOffset;
+                }
+
+                //since the dates were stored in a zero indexed range, we have to convert it back to the proper year range for display
                 Console.Write(START_YEAR + yearOffset + ": " + _yearCensus[yearOffset] + " ");
                 if(yearOffset % 10 == 0) {
                     Console.Write("\n");
                 }
             }
+
+            Console.WriteLine("\nThe year with most people alive is " + (START_YEAR + maxIndex) + " with " + maxValue + " people.");
 
             //Hold window open
             Console.WriteLine("\nPress Enter to close...");
